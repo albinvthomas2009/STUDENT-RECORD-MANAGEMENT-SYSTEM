@@ -137,6 +137,34 @@ def update_faculty_subject(f_id,subject):
     cursor.execute(sqlstr)
     print("Data Updated Successfully")
     dbcon.commit()
+
+def delete_admno(adm_no):
+    sqlstr = "Delete from STUDENTS where ADM_NO = ({})".format(adm_no)
+    cursor.execute(sqlstr)
+    print("Data Deleted Successfully")
+    dbcon.commit()    
+
+def delete_name(name):
+    sqlstr = "Delete from STUDENTS where NAME = ('{}')".format(name)
+    cursor.execute(sqlstr)
+    print("Data Deleted Successfully")
+    dbcon.commit()
+
+def delete_faculty_fid(f_id):
+    sqlstr = "Delete from FACULTY where FACULTY_ID = ('{}')".format(f_id)
+    cursor.execute(sqlstr)
+    print("Data Deleted Successfully")
+    dbcon.commit()
+    
+def delete_faculty_name(f_name):
+    sqlstr = "Delete from FACULTY where FACULTY_NAME = ('{}')".format(f_name)
+    cursor.execute(sqlstr)
+    print("Data Deleted Successfully")
+    dbcon.commit()
+    
+
+
+
 print('''
 ==================================
  STUDENT RECORD MANAGEMENT SYSTEM
@@ -162,10 +190,13 @@ while loop == 1:
             print('6. EXIT \n')
             menu = int(input("Enter your choice: "))
             print()
+
+            
             if menu == 1:
                 print('1. ADD STUDENT DETAILS')
-                print('2. ADD FACULTY DETAILS')
+                print('2. ADD FACULTY DETAILS \n')
                 add_menu = int(input("Enter your choice: "))
+                print()
                 if add_menu == 1:
                     ans = 'y'
                     while ans == 'y':
@@ -176,54 +207,70 @@ while loop == 1:
                         add_faculty()
                 else:
                     print("INVALID CHOICE")
+
+                    
             elif menu == 2:
                 print("1. STUDENT DETAILS")
-                print("2. FACULTY DETAILS")
+                print("2. FACULTY DETAILS \n")
                 find_menu = int(input("Enter your choice: "))
+                print()
                 if find_menu == 1:
                     print("1. FIND BY ADMISSION NUMBER")
-                    print("2. FIND BY NAME")
+                    print("2. FIND BY NAME \n")
                     find_sub_menu = int(input("Enter your choice: "))
+                    print()
                     if find_sub_menu == 1:
-                        adm_no = int(input("Enter the Admission Number to be found: ")).upper()
+                        adm_no = int(input("Enter the Admission Number to be found: "))
                         find_admno(adm_no)
+                        print()
                     elif find_sub_menu == 2:
                         name = input("Enter the Name to be found: ").title()
                         find_name(name)
+                        print()
                     else:
                         print("INVALID CHOICE")
                 elif find_menu == 2:
                     print("1. FIND BY ID")
                     print("2. FIND BY NAME")
-                    print("3. FIND BY SUBJECT")
+                    print("3. FIND BY SUBJECT \n")
                     find_sub_menu = int(input("Enter your choice: "))
+                    print()
                     if find_sub_menu == 1:
                         f_id = input("Enter the Faculty ID to be found: ").upper()
                         find_fid(f_id)
+                        print()
                     elif find_sub_menu == 2:
                         f_name = input("Enter the Faculty Name to be found: ").upper()
                         find_fname(f_name)
+                        print()
                     elif find_sub_menu == 3:
                         subject = input("Enter the Subject to be found: ").upper()
                         find_subject(subject)
+                        print()
                     else:
                         print("INVALID CHOICE")
+
+                        
             elif menu == 3:
                 print("1. SORT BY CLASS")
                 print("2. SORT BY SECTION")
-                print("3. SORT BY STREAM")
+                print("3. SORT BY STREAM \n")
                 sort_menu = int(input("Enter your choice: "))
+                print()
                 if sort_menu == 1:
-                    cls = input("Enter the Class: ")
+                    cls = input("Enter the Class: ").upper()
                     sort_class(cls)
+                    print()
                 elif sort_menu == 2:
                     section = input("Enter the Section: ").upper()
                     sort_section(section)
+                    print()
                 elif sort_menu == 3:
                     print("Available Streams are:\n BIO-MATHS \n BIO-IP \n BIO-PSYCHOLOGY \n COMPUTER-MATHS")
                     stream = input("Enter the Stream Name: ").upper()
                     if stream in ['BIO-MATHS','BIO-IP','BIO-PSYCHOLOGY','COMPUTER-MATHS']:
                         sort_stream(stream)
+                        print()
                     else:
                         print("ENTER THE STREAM NAME IN THE ABOVE MENTIONED FORMAT")
                 else:
@@ -232,77 +279,102 @@ while loop == 1:
 
             elif menu == 4:
                 print("1. UPDATE STUDENT DETAILS")
-                print("2. UPDATE FACULTY DETAILS")
+                print("2. UPDATE FACULTY DETAILS \n")
                 update_menu = int(input("Enter your choice: "))
+                print()
                 if update_menu == 1:
                     print("1. UPDATE NAME")
                     print("2. UPDATE CLASS")
                     print("3. UPDATE SECTION")
-                    print("4. UPDATE DOB")
+                    print("4. UPDATE DOB \n")
                     update_sub_menu = int(input("Enter your choice: "))
+                    print()
                     if update_sub_menu == 1:
                         adm_no = input("Enter the Admission Number: ")
-                        name = input("Enter the New Name: ")
+                        name = input("Enter the New Name: ").title()
                         update_name(adm_no,name)
+                        print()
                     elif update_sub_menu == 2:
                         adm_no = input("Enter the Admission Number: ")
-                        cls = input("Enter the New Class: ")
+                        cls = input("Enter the New Class: ").upper()
                         update_class(adm_no,cls)
+                        print()
                     elif update_sub_menu == 3:
                         adm_no = input("Enter the Admission Number: ")
-                        section = input("Enter the New Section: ")
+                        section = input("Enter the New Section: ").upper()
                         update_section(adm_no,section)
+                        print()
                     elif update_sub_menu == 4:
                         adm_no = input("Enter the Admission Number: ")
                         dob = input("Enter the New DOB in the format(yyyy-mm-dd): ")
                         update_dob(adm_no,dob)
+                        print()
                     else:
                         print("INVALID CHOICE")
                 elif update_menu == 2:
                     print("1. UPDATE NAME")
-                    print("2. UPDATE SUBJECT")
+                    print("2. UPDATE SUBJECT \n")
                     update_sub_menu = int(input("Enter your choice: "))
+                    print()
                     if update_sub_menu == 1:
-                        f_id = input("Enter the Faculty ID: ")
-                        name = input("Enter the New Name: ")
+                        f_id = input("Enter the Faculty ID: ").upper()
+                        name = input("Enter the New Name: ").upper()
                         update_faculty_name(f_id,name)
+                        print()
                     elif update_sub_menu == 2:
-                        f_id = input("Enter the Faculty ID: ")
-                        subject = input("Enter the New Subject: ")
+                        f_id = input("Enter the Faculty ID: ").upper()
+                        subject = input("Enter the New Subject: ").upper()
                         update_faculty_subject(f_id,subject)
+                        print()
                     else:
                         print("INVALID CHOICE")
-                        
-                          
 
+                        
             elif menu == 5:
                 print("1. DELETE STUDENT DETAILS")
-                print("2. DELETE FACULTY DETAILS")
+                print("2. DELETE FACULTY DETAILS \n")
                 delete_menu = int(input("Enter your choice: "))
+                print()
                 if delete_menu == 1:
                     print("1. DELETE WITH ADMISSION NUMBER")
-                    print("2. DELETE WITH NAME")
+                    print("2. DELETE WITH NAME \n")
                     delete_sub_menu = int(input("Enter your choice: "))
-                    
-                        
-                
-                    
-                        
-                
+                    print()
+                    if delete_sub_menu == 1:
+                        adm_no = int(input("Enter the Admission Number to be DELETED: "))
+                        delete_admno(adm_no)
+                        print()
+                    elif delete_sub_menu == 2:
+                        name = input("Enter the Name to be DELETED: ").title()
+                        delete_name(name)
+                        print()
+                    else:
+                        print("INVALID CHOICE")
+                elif delete_menu == 2:
+                    print("1. DELETE WITH FACULTY ID")
+                    print("2. DELETE WITH FACULTY NAME \n")
+                    delete_sub_menu = int(input("Enter your choice: "))
+                    print()
+                    if delete_sub_menu == 1:
+                        f_id = int(input("Enter the Faculty ID to be DELETED: ")).upper()
+                        delete_faculty_fid(f_id)
+                        print()
+                    elif delete_sub_menu == 2:
+                        f_name = input("Enter the Faculty Name to be DELETED: ").upper()
+                        delete_faculty_name(f_name)
+                        print()
+                    else:
+                        print("INVALID CHOICE")
 
-                
+                        
             elif menu == 6:
                 print("THANK YOU")
                 break
             else:
-                print("INVALID CHOICE")
-                    
-            
-            
+                print("INVALID CHOICE")            
     elif choice == 2:
         print('THANK YOU')
         break
-
     else:
         print("INVALID CHOICE")
     
