@@ -6,7 +6,7 @@ A Python-based **Student Record Management System** that uses **MySQL** to store
 
 This project provides a menu-driven command-line application for managing school records. It connects to a local MySQL database named `school` and provides options for adding, finding, sorting, updating, and deleting student and faculty records.
 
-> **Current status:** The project is approximately 90% complete. The delete-record functionality is currently unfinished and is planned for a later update.
+
 
 ## Features
 
