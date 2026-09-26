@@ -62,7 +62,7 @@ def add_faculty():
                 print()
                 existing = True
     while existing == False:                            
-        f_name = input("Enter the Faculty Name: ").title()
+        f_name = input("Enter the Faculty Name: ").upper()
         subject = input("Enter the subject: ").upper()
         sqlstr = "INSERT INTO FACULTY VALUES('{}','{}','{}')".format(f_id,f_name,subject)
         cursor.execute(sqlstr)
@@ -279,7 +279,7 @@ stream_query = 'CREATE TABLE IF NOT EXISTS STREAM(STREAM_NO CHAR(4)PRIMARY KEY,S
 cursor.execute(stream_query)
 dbcon.commit()
 
-faculty_query = 'CREATE TABLE IF NOT EXISTS STREAM(FACULTY_ID CHAR(4)PRIMARY KEY,FACULTY_NAME VARCHAR(50),SUBJECT VARCHAR(20))'
+faculty_query = 'CREATE TABLE IF NOT EXISTS FACULTY(FACULTY_ID CHAR(4)PRIMARY KEY,FACULTY_NAME VARCHAR(50),SUBJECT VARCHAR(20))'
 cursor.execute(faculty_query)
 dbcon.commit()
 
@@ -543,7 +543,7 @@ try:
                                         delete_sub_menu = int(input("Enter your choice: "))
                                         print()
                                         if delete_sub_menu == 1:
-                                            f_id = int(input("Enter the Faculty ID to be DELETED: ")).upper()
+                                            f_id = input("Enter the Faculty ID to be DELETED: ").upper()
                                             delete_faculty_fid(f_id)
                                             print()
                                         elif delete_sub_menu == 2:
@@ -569,7 +569,6 @@ try:
                     print()
                     print('===== WELCOME USER =====')
                     
-                    connector()
                     while loop == 2:
                         print()
                         print("1. FIND DETAILS")
